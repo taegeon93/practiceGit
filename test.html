@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice2</title>
+    <style>
+        td,th{
+            border: solid;
+            
+        }
+        button{
+            width:100%;
+            padding: 20px;
+        }
+        input{
+            width:95%;
+            height: 40px;
+        }
+        
+    </style>
+</head>
+<body>
+    <table style="background-color: green; border: solid;">
+        <h1>Practice2-2</h1>
+
+        <tr>
+            <td colspan="4"><input type="text" id="result" readonly></td>
+        </tr>
+        <tr>
+            <th><button id="C" onclick="clickCalc(this)">C</button></th>
+            <th><button name="bs" onclick="clickCalc(this)">bs</button></th>
+            <th><button id="%" onclick="clickCalc(this)">%</button></th>
+            <th><button id="/" onclick="clickCalc(this)">/</button></th>
+        </tr>
+        <tr>
+            <td><button id="7" onclick="clickCalc(this)">7</button></td>
+            <td><button id="8" onclick="clickCalc(this)">8</button></td>
+            <td><button id="9" onclick="clickCalc(this)">9</button></td>
+            <th><button id="*" onclick="clickCalc(this)">x</button></th>
+        </tr>
+        <tr>
+            <td><button id="4" onclick="clickCalc(this)">4</button></td>
+            <td><button id="5" onclick="clickCalc(this)">5</button></td>
+            <td><button id="6" onclick="clickCalc(this)">6</button></td>
+            <th><button id="-" onclick="clickCalc(this)">-</button></th>
+        </tr>
+        <tr>
+            <td><button id="1" onclick="clickCalc(this)">1</button></td>
+            <td><button id="2" onclick="clickCalc(this)">2</button></td>
+            <td><button id="3" onclick="clickCalc(this)">3</button></td>
+            <th><button id="+" onclick="clickCalc(this)">+</button></th>
+        </tr>
+        <tr>
+            <td colspan="2"><button id="0" onclick="clickCalc(this)">0</button></td>
+            <th><button id="." onclick="clickCalc(this)">.</button></th>
+            <th><button id="=" onclick="clickCalc1()">=</button></th>
+        </tr>
+
+    </table>
+    <script>
+        function clickCalc(target){
+            let result =document.getElementById("result");
+            let a = result.value.slice(-1);
+            result.value += target.id;
+            if(target.id =="C"){
+                result.value = null;
+            }
+            if(target.name == "bs"){
+                result.value = result.value.slice(0,-1);
+                return;
+            }
+            
+            if(target.id=="*"||target.id=="/"||target.id=="%"){
+                if(result.value=="*"||result.value=="/"||result.value=="%"){
+                    result.value = null;
+                    alert('처음으로 연산자가 올수 없습니다.');
+                    return;
+                }
+            }
+            
+            if(a=="+"||a=="%"||a=="/"||a=="*"||a=="-"){
+                if(target.id=="+"||target.id=="%"||target.id=="/"||target.id=="*"||target.id=="-"){
+                    result.value = null;
+                    alert('연산자 연속사용 불가.');
+                    return;
+                }
+            }
+            
+          
+            
+           
+        }
+        
+       
+        function clickCalc1(){
+            let calculate = result.value;
+                let x = calculate.slice(-1);
+                
+                if(x=="+"||x=="%"||x=="/"||x=="*"||x=="-"){
+                    alert('마지막에 연산자는 불가능');
+                    return;
+                }else{
+                    result.value = null;
+                    result.value = eval(calculate);
+                    return;
+                }
+                
+
+        }
+
+    </script>
+    
+</body>
+</html>
